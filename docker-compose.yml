@@ -1,0 +1,43 @@
+version: '2'
+services:
+  code:
+    image: ubuntu:16.04
+    volumes:
+      - ../progect/:/var/www/html
+
+  php:
+    image: php:7-fpm
+    container_name: test_php
+    volumes_from:
+      - code
+    links:
+      - mysql
+
+  nginx:
+    build: ./nginx
+    container_name: test_nginx
+    ports:
+      - "8080:80"
+    volumes_from:
+      - code
+    links:
+      - php:fpm
+
+
+  mysql:
+    image: mysql
+    container_name: test_mysql
+    volumes_from:
+      - mysqldata
+    ports:
+      - "3307:3306"
+    environment:
+      - MYSQL_DATABASE=dev_doctrine
+      - MYSQL_USER=dev
+      - MYSQL_PASSWORD=dev_pass
+      - MYSQL_ROOT_PASSWORD=root_pass
+
+  mysqldata:
+    image: ubuntu:16.04
+    volumes:
+        - /var/lib/mysql
