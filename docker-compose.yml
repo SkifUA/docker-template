@@ -23,7 +23,6 @@ services:
     links:
       - php:fpm
 
-
   mysql:
     image: mysql
     container_name: test_mysql
