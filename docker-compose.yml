@@ -6,7 +6,7 @@ services:
       - ../progect/:/var/www/html
 
   php:
-    image: php:7-fpm
+    build: ./php
     container_name: test_php
     volumes_from:
       - code
