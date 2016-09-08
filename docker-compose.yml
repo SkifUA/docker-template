@@ -3,7 +3,7 @@ services:
   code:
     image: ubuntu:16.04
     volumes:
-      - ../progect/:/var/www/html
+      - ../project/:/var/www/html
 
   php:
     build: ./php
