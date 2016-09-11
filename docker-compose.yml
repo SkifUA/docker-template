@@ -2,6 +2,7 @@ version: '2'
 services:
   code:
     image: ubuntu:16.04
+    container_name: test_code
     volumes:
       - ../project/:/var/www/html
 
@@ -38,5 +39,6 @@ services:
 
   mysqldata:
     image: ubuntu:16.04
+    container_name: test_mysqldata
     volumes:
         - /var/lib/mysql
