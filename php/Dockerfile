@@ -1,7 +1,7 @@
 FROM php:7-fpm
 RUN apt-get update \
     && docker-php-ext-install pdo pdo_mysql mysqli iconv mbstring json
-
+# imagik
 RUN runtimeRequirements="libmagickwand-6.q16-dev --no-install-recommends" \
 	&& apt-get update && apt-get install -y ${runtimeRequirements} \
 	&& ln -s /usr/lib/x86_64-linux-gnu/ImageMagick-6.8.9/bin-Q16/MagickWand-config /usr/bin/ \
@@ -11,7 +11,7 @@ RUN runtimeRequirements="libmagickwand-6.q16-dev --no-install-recommends" \
 
 COPY ./upload.ini /usr/local/etc/php/conf.d/upload.ini
 
-
+# xdebug
 ADD http://xdebug.org/files/xdebug-2.4.0.tgz /
 
 RUN tar -xvzf /xdebug-2.4.0.tgz \
