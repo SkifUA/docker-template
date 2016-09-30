@@ -11,6 +11,11 @@ RUN runtimeRequirements="libmagickwand-6.q16-dev --no-install-recommends" \
 
 COPY ./upload.ini /usr/local/etc/php/conf.d/upload.ini
 
+# Install composer
+RUN curl -sS https://getcomposer.org/installer | php -- \
+	--install-dir=/usr/local/bin \
+	--filename=composer
+
 # xdebug
 ADD http://xdebug.org/files/xdebug-2.4.0.tgz /
 
