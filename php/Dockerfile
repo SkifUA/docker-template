@@ -5,6 +5,11 @@ RUN apt-get update \
 # Install utilities used
 RUN apt-get update \
 	&& apt-get install -y \
+		vim \
+		net-tools \
+		procps \
+		telnet \
+		netcat \
 		zip \
 		unzip \
 		wget \
