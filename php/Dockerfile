@@ -1,6 +1,21 @@
 FROM php:7-fpm
 RUN apt-get update \
     && docker-php-ext-install pdo pdo_mysql mysqli iconv mbstring json
+
+# Install utilities used
+RUN apt-get update \
+	&& apt-get install -y \
+		zip \
+		unzip \
+		wget \
+		curl \
+		git \
+		mysql-client \
+		moreutils \
+		dnsutils \
+	&& rm -rf /var/lib/apt/lists/*
+
+RUN apt-get update && apt-get install -y git
 # imagik
 RUN runtimeRequirements="libmagickwand-6.q16-dev --no-install-recommends" \
 	&& apt-get update && apt-get install -y ${runtimeRequirements} \
