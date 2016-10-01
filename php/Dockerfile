@@ -30,4 +30,9 @@ RUN echo "xdebug.max_nesting_level = 250" >> /usr/local/etc/php/conf.d/xdebug.in
 
 RUN docker-php-ext-enable xdebug
 
+# Install composer
+RUN curl -sS https://getcomposer.org/installer | php -- \
+	--install-dir=/usr/local/bin \
+	--filename=composer
+
 CMD ["php-fpm"]
