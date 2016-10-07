@@ -2,13 +2,13 @@ version: '2'
 services:
   code:
     image: ubuntu:16.04
-    container_name: test_code
+    container_name: kmet_code
     volumes:
       - ../project/:/var/www/html
 
   php:
     build: ./php
-    container_name: test_php
+    container_name: kmet_php
     volumes_from:
       - code
     links:
@@ -16,9 +16,9 @@ services:
 
   nginx:
     build: ./nginx
-    container_name: test_nginx
+    container_name: kmet_nginx
     ports:
-      - "8080:80"
+      - "82:80"
     volumes_from:
       - code
     links:
@@ -26,19 +26,19 @@ services:
 
   mysql:
     image: mysql
-    container_name: test_mysql
+    container_name: kmet_mysql
     volumes_from:
       - mysqldata
     ports:
-      - "3307:3306"
+      - "3312:3306"
     environment:
-      - MYSQL_DATABASE=dev_doctrine
-      - MYSQL_USER=dev
-      - MYSQL_PASSWORD=dev_pass
+      - MYSQL_DATABASE=dev_kmet
+      - MYSQL_USER=kmet
+      - MYSQL_PASSWORD=kmet_pass
       - MYSQL_ROOT_PASSWORD=root_pass
 
   mysqldata:
     image: ubuntu:16.04
-    container_name: test_mysqldata
+    container_name: kmet_mysqldata
     volumes:
         - /var/lib/mysql
